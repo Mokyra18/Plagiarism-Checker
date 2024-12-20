@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Detector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Background and basic styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://img.freepik.com/free-vector/plagiarism-concept-character_23-2148403724.jpg?t=st=1734702029~exp=1734705629~hmac=373bc8697562fed596d7e57ffe50f32e676b04695494d01fb4624a31300edd8c&w=996') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            position: relative;
+        }
+
+        /* Overlay to soften background and create contrast */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Soft dark overlay */
+            z-index: -1; /* Behind content */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.85); /* Slight opacity for softness */
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border: 3px solid #007bff; /* Dynamic border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px); /* Subtle hover effect */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        p.description {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #555;
+            font-weight: 400;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 14px;
+            font-size: 1.1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            resize: none;
+            background-color: #f7f7f7;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            color: #555;
+            word-wrap: break-word;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Plagiarism Checker</h1>
+        <p class="description">
+            Ensure your content is original. Simply paste your text below and click "Check for Plagiarism" to check if it matches any existing sources online.
+        </p>
+        <form action="/detect" method="post">
+            <textarea name="text" placeholder="Paste your content here..." required></textarea>
+            <button type="submit">Check for Plagiarism</button>
+        </form>
+        {% if result %}
+            <div class="result">{{ result }}</div>
+        {% endif %}
+        <p class="note">Your privacy is important to us. We do not store your text or results.</p>
+    </div>
+</body>
+</html>
